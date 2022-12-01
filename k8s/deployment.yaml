@@ -23,3 +23,5 @@ spec:
         env:
         - name: SNS_TOPIC_NAME
           value: "raft-tcode-il2-sbx-demo-topic"
+        - name: AWS_DEFAULT_REGION
+          value: "us-east-1"
