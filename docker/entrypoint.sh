@@ -2,4 +2,4 @@
 # 2>&1 &
 gunicorn --bind 0.0.0.0:5000 app:app --daemon --log-file=log.txt
 
-# sleep infinity
+sleep infinity
