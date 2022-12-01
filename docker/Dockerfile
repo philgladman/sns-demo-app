@@ -2,7 +2,7 @@ FROM python
 WORKDIR /root/sns-app
 COPY sns-app/. /root/sns-app
 EXPOSE 5000
-RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "/tmp/awscliv2.zip"
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/tmp/awscliv2.zip"
 RUN unzip /tmp/awscliv2.zip -d /tmp/
 RUN sh /tmp/aws/install
 RUN pip install Flask boto3 jmespath gunicorn
