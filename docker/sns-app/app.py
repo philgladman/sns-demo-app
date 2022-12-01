@@ -9,11 +9,6 @@ app = Flask(__name__)
 secret_key = os.urandom(24).hex()
 app.config['SECRET_KEY'] = secret_key
 
-if __name__ != '__main__':
-    gunicorn_logger = logging.getLogger('gunicorn.error')
-    app.logger.handlers = gunicorn_logger.handlers
-    app.logger.setLevel(gunicorn_logger.level)
-
 logger = logging.getLogger(__name__)
 
 # snippet-start:[python.example_code.sns.SnsWrapper]
@@ -54,9 +49,9 @@ class SnsWrapper:
 # snippet-end:[python.example_code.sns.Subscribe]
 
 def usage_demo(email_address):
-    app.logger.info('-'*88)
-    app.logger.info("Welcome to the Amazon SNS demo!")
-    app.logger.info('-'*88)
+    print('-'*88)
+    print("Welcome to the Amazon SNS demo!")
+    print('-'*88)
 
     logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
 
@@ -66,22 +61,22 @@ def usage_demo(email_address):
     sns_client = boto3.client('sns')
     topic_name = os.environ.get('SNS_TOPIC_NAME')
     if topic_name == '':
-        app.logger.info("ERROR: SNS_TOPIC_NAME env variable is not defined")
+        print("ERROR: SNS_TOPIC_NAME env variable is not defined")
     response = sns_client.list_topics()
     list_of_topics = jmespath.search('Topics[].TopicArn', response)
     for topic_arn in list_of_topics:
         if topic_name in topic_arn:
             topic_arn = topic_arn
-    app.logger.info(topic_arn)
+    print(topic_arn)
 
     topic = sns.Topic(arn=topic_arn)
 
-    app.logger.info(f"Subscribing {email_address} to {topic_name}.")
+    print(f"Subscribing {email_address} to {topic_name}.")
     sns_wrapper.subscribe(topic, 'email', email_address)
 
-    app.logger.info('-'*88)
-    app.logger.info("Succesfully subscribed", email_address, "to", topic_name)
-    app.logger.info('-'*88)    
+    print('-'*88)
+    print("Succesfully subscribed", email_address, "to", topic_name)
+    print('-'*88)    
 
 @app.route('/', methods=('GET', 'POST'))
 def index():
@@ -90,13 +85,13 @@ def index():
 
         while not email_address:
             # flash('email-address is required!')
-            app.logger.info('email-address is required!')
+            print('email-address is required!')
 
         else:
             # email_var = ({'email-address': email_address})
-            app.logger.info('-'*88)
-            app.logger.info(email_address)
-            app.logger.info('-'*88)
+            print('-'*88)
+            print(email_address)
+            print('-'*88)
             usage_demo(email_address)
             return render_template('success.html')
         
