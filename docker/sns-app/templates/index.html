@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        nav a {
+            color: #d64161;
+            font-size: 2em;
+            margin-left: 50px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a>AWS SNS Email Subscriber App</a>
+    </nav>
+    <hr>
+    <div class="content">
+    <form method="post">
+        <label for="email-address">Please Enter Your Email Address</label>
+        <br>
+        <input type="text" name="email-address"
+               placeholder="email-address"
+               value="{{ request.form['email-address'] }}"></input>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+        
+    </div>
+</body>
+</html>

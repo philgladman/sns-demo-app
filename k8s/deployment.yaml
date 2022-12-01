@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sns-deploy
+  name: sns-deploy
+  namespace: sns-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sns-deploy
+  template:
+    metadata:
+      labels:
+        app: sns-deploy
+    spec:
+      containers:
+      - image: philgman1121/sns-app-02
+        name: sns-app-01
+        ports:
+        - containerPort: 5000
+        env:
+        - name: SNS_TOPIC_NAME
+          value: "raft-tcode-il2-sbx-demo-topic"
