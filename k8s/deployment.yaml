@@ -16,12 +16,12 @@ spec:
         app: sns-deploy
     spec:
       containers:
-      - image: philgman1121/sns-app-02
-        name: sns-app-01
+      - image: philgman1121/sns-app
+        name: sns-app
         ports:
         - containerPort: 5000
         env:
         - name: SNS_TOPIC_NAME
-          value: "raft-tcode-il2-sbx-demo-topic"
+          value: "REPLACE_WITH_SNS_TOPIC_NAME"
         - name: AWS_DEFAULT_REGION
-          value: "us-east-1"
+          value: "REPLACE_WITH_AWS_REGION"
